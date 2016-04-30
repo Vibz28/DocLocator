@@ -4,14 +4,15 @@
     <title>DocLocator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 	<link rel="stylesheet" href="css/login.css">
-	<script src="myscripts.js"></script>
-	<script src="jquery-1.12.0.min.js"></script>
+	<script src="js/myscripts.js"></script>
 	<meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -31,9 +32,9 @@
 <!--            </div>-->
 
             <ul id="menu-menu" class="nav navbar-nav BB-nav collapse navbar-collapse">
-                <li class="menu-item"><a title="Itme1" href="index.html">Home</a></li>
-                <li class="menu-item"><a title="Itme2" href="about.html">About</a></li>
-				<li class="menu-item"><a title="Itme2" href="contactus.html">Contact Us</a></li>
+                <li class="menu-item"><a title="Home" href="index.html">Home</a></li>
+                <li class="menu-item"><a title="About" href="about.html">About</a></li>
+				<li class="menu-item"><a title="Contact Us" href="contactus.html">Contact Us</a></li>
             </ul>            
             
             <ul class="nav navbar-nav navbar-right nav-pills">
@@ -97,7 +98,7 @@
 	            <p><img src="images/lock.png" alt=""></p>
 	        </li>
          </ul>
-       	 	<input type="submit" name="Sign In" value="Sign In"/>
+       	 	<input type="submit" name="Sign In" value="Sign In" id="signin"/>
 			<div class="clear"></div>	
 			<label class="checkbox"><input type="checkbox" name="checkbox" checked><i></i>Remember me</label>
 		<div class="forgot">
@@ -108,10 +109,68 @@
 <!-- end-form -->
 <!-- start-account -->
 <div class="account">
-	<h2><a href="#">Don't have an account? Sign Up!</a></h2>
-    <div class="span"><a href="#"><img src="images/facebook.png" alt=""/><i>Sign In with Facebook</i><div class="clear"></div></a></div>	
-    <div class="span1"><a href="#"><img src="images/twitter.png" alt=""/><i>Sign In with Twitter</i><div class="clear"></div></a></div>
-    <div class="span2"><a href="#"><img src="images/gplus.png" alt=""/><i>Sign In with Google+</i><div class="clear"></div></a></div>
+	<h2><a href="createaccount.html" id="create">Don't have an account? Sign Up!</a></h2>
+        <script type="text/javascript">
+
+    $(function() {
+        $("#fblogin").click(function(){
+               var ref = new Firebase("https://glowing-heat-2918.firebaseio.com");
+       ref.authWithOAuthPopup("facebook", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    },{
+		  remember: "sessionOnly",
+		});
+        });
+    });
+     $(function() {
+        $("#tlogin").click(function(){
+		    var ref = new Firebase("https://glowing-heat-2918.firebaseio.com");
+		ref.authWithOAuthPopup("twitter", function(error, authData) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", authData);
+		  }
+		}, {remember: "sessionOnly"});
+		});
+    });
+     $(function() {
+     	$("#gplogin").click(function(){
+     		var ref = new Firebase("https://glowing-heat-2918.firebaseio.com");
+		ref.authWithOAuthPopup("google", function(error, authData) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", authData);
+		  }
+		});
+	});
+     });
+		$(function() {
+     	$("#signin").click(function(){
+     		var ref = new Firebase("https://glowing-heat-2918.firebaseio.com");
+		ref.authWithPassword({
+		  email    : "bobtony@firebase.com",
+		  password : "correcthorsebatterystaple"
+		}, function(error, authData) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", authData);
+		  }
+		});
+	});
+    });
+
+
+    </script>
+    <div class="span"><a href="#" id="fblogin"><img src="images/facebook.png" alt=""/><i>Sign In with Facebook</i><div class="clear"></div></a></div>	
+    <div class="span1"><a href="#" id="tlogin"><img src="images/twitter.png" alt=""/><i>Sign In with Twitter</i><div class="clear"></div></a></div>
+    <div class="span2"><a href="#" id="gplogin"><img src="images/gplus.png" alt=""/><i>Sign In with Google+</i><div class="clear"></div></a></div>
 </div>	
 <!-- end-account -->
 <div class="clear"></div>	

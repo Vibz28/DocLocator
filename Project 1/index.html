@@ -4,15 +4,16 @@
     <title>DocLocator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/master.css">
+    <script src="js/jquery-1.12.3.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/myscripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="css/master.css">
-	<script src="myscripts.js"></script>
-	<script src="jquery-1.12.0.min.js"></script>
-	<meta name="google-signin-scope" content="profile email">
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
@@ -20,20 +21,20 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet" type="text/css">
 <nav class="navbar navbar-default affix-top" role="navigation" id="BB-nav">
     <div class="container-fluid">
-        <div class="container nav-container">
-<!--            <div class="navbar-header">-->
+      <div class="container nav-container">
+	<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".BB-nav">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<!--            </div>-->
+	</div>
 
             <ul id="menu-menu" class="nav navbar-nav BB-nav collapse navbar-collapse">
-                <li class="menu-item"><a title="Itme1" href="index.html">Home</a></li>
-                <li class="menu-item"><a title="Itme2" href="about.html">About</a></li>
-				<li class="menu-item"><a title="Itme2" href="contactus.html">Contact Us</a></li>
+                <li class="menu-item"><a title="Home" href="index.html">Home</a></li>
+                <li class="menu-item"><a title="About" href="about.html">About</a></li>
+				<li class="menu-item"><a title="Contact Us" href="contactus.html">Contact Us</a></li>
             </ul>            
             
             <ul class="nav navbar-nav navbar-right nav-pills">
@@ -76,7 +77,7 @@
                 </li>
             </ul>
 			<ul id="menu-menu" class="nav navbar-nav BB-nav collapse navbar-collapse">
-                <li class="menu-item"><a title="Item1" href="login.html">Login</a></li>
+                <li class="menu-item"><a title="Login" href="login.html">Login</a></li>
         </div>
     </div>
 </nav>
@@ -101,12 +102,65 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Near:</label>
+                        <label class="col-md-5 control-label">State:</label>
                         <div class="col-md-2">
                             <select class="form-control" placeholder="Province">
-                                <option value="">All</option>
-                                <option value="">Province 1</option>
-                                <option value="">Province 2</option>
+                                <option value="">Select a State</option>
+                                <option value="">Alabama</option>
+                                <option value="">Alaska</option>
+                                <option value="">American Samoa</option>
+                                <option value="">Arizona</option>
+                                <option value="">Arkansas</option>
+                                <option value="">California</option>
+                                <option value="">Colorado</option>
+                                <option value="">Connecticut</option>
+                                <option value="">Delaware</option>
+                                <option value="">Florida</option>
+                                <option value="">Georgia</option>
+                                <option value="">Guam</option>
+                                <option value="">Hawaii</option>
+                                <option value="">Idaho</option>
+                                <option value="">Illinois</option>
+                                <option value="">Indiana</option>
+                                <option value="">Iowa</option>
+                                <option value="">Kansas</option>
+                                <option value="">Kentucky</option>
+                                <option value="">Louisiana</option>
+                                <option value="">Maine</option>
+                                <option value="">Maryland</option>
+                                <option value="">Massachusetts</option>
+                                <option value="">Michigan</option>
+                                <option value="">Minnesota</option>
+                                <option value="">Mississippi</option>
+                                <option value="">Missouri</option>
+                                <option value="">Montana</option>
+                                <option value="">Nebraska</option>
+                                <option value="">Nevada</option>
+                                <option value="">New Hampshire</option>
+                                <option value="">New Jersey</option>
+                                <option value="">New Mexico</option>
+                                <option value="">New York</option>
+                                <option value="">North Carolina</option>
+                                <option value="">North Dakota</option>
+                                <option value="">North Mariana Islands</option>
+                                <option value="">Ohio</option>
+                                <option value="">Oklahoma</option>
+                                <option value="">Oregon</option>
+                                <option value="">Pennsylvania</option>
+                                <option value="">Puerto Rico</option>
+                                <option value="">Rhode Island</option>
+                                <option value="">South Carolina</option>
+                                <option value="">South Dakota</option>
+                                <option value="">Tennessee</option>
+                                <option value="">Texas</option>
+                                <option value="">U.S. Virgin Islands</option>
+                                <option value="">Utah</option>
+                                <option value="">Vermont</option>
+                                <option value="">Virginia</option>
+                                <option value="">Washington</option>
+                                <option value="">West Virginia</option>
+                                <option value="">Wisconsin</option>
+                                <option value="">Wyoming</option>
                             </select>
                         </div>
                     </div>
@@ -115,9 +169,9 @@
                         <label class="col-md-5 control-label">City:</label>
                         <div class="col-md-2">
                             <select class="form-control" placeholder="City">
-                                <option value="">All</option>
-                                <option value="">City 1</option>
-                                <option value="">City 2</option>
+                                <option value="">Select a City</option>
+                                <option value="">Lafayette</option>
+                                <option value="">West Lafayette</option>
                             </select>
                         </div>
                     </div>
@@ -132,5 +186,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+var Firebase = require("firebase");
+new Firebase('https://glowing-heat-2918.firebaseio.com/');
+</script>
 </body>
 </html>
